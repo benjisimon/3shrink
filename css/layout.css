@@ -17,7 +17,17 @@ h1 a {
   color: #DDD;
 }
 
+pre {
+  max-width: 800px;
+  border: 1px solid black;
+  background-color: white;
+  color: blue;
+  padding: 20px;
+  margin: auto;
+}
+
 .footer  {
+  margin-top: 40px;
   text-align: center;
   font-size: 10px;
 }

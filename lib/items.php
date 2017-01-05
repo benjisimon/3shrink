@@ -57,4 +57,14 @@ function item_abbreviation() {
    return implode('', array_map(function($i) use($charset) { return $charset[$i]; }, $indexes));
 }
 
+function item_content($item) {
+  $content = '';
+  for($i = 0; $i < 4; $i++) {
+    if($item["content{$i}"] != null) {
+      $content .= $item["content{$i}"];
+    }
+  }
+  return $content;
+}
+
 ?>
