@@ -14,5 +14,9 @@
     <div class="page">
       <?= $body ?>
     </div>
+
+    <div class="footer">
+      <a href="/">Home</a> | <a href="http://blogbyben.com/">Built By Ben</a>
+    </div>
   </body>
 </html>

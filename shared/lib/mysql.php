@@ -8,9 +8,9 @@
  * arg is provided, we assume they are arguments to a sprintf type string, but
  * we need to format them for the SQL.
  */
-function sql_fmt($args) {
+function sql_fmt() {
   global $_dbh;
-
+  $args = func_get_args();
   if(count($args) == 1) {
     return $args[0];
   }
@@ -32,6 +32,10 @@ function sql_fmt($args) {
   }
   array_unshift($enc_args, $template);
   return call_user_func_array("sprintf", $enc_args);
+}
+
+function sql_fmt_array($args) {
+  return call_user_func_array('sql_fmt', $args);
 }
 
 function sql_fmt_criteria($criteria, $options = array()) {
@@ -63,13 +67,14 @@ function sql_fmt_criteria($criteria, $options = array()) {
           $where_sql[] = sql_fmt("$k BETWEEN %s AND %s", $v[1][0], $v[1][1]);
           break;
         default:
-          trigger_error("Unkown operator: [{$v[0]}]", E_USER_ERROR);
+          trigger_error("Unkown operator: " . print_r($v, true), E_USER_ERROR);
       }
     } else {
       $where_sql[] = sql_fmt("($k = %s)", $v);
     }
   }
   $glue = g($options, 'glue', 'AND');
+
   return implode(" $glue\n", $where_sql);
 }
 
@@ -110,9 +115,8 @@ function mysql_do_exec($sql) {
 
 function mysql_exec() {
   $all_args = func_get_args();
-  $sql = sql_format_args($all_args);
+  $sql = sql_fmt_array($all_args);
   $result = mysql_do_exec($sql);
-  MysqlInvocationCache::clear();
   return $result;
 }
 
@@ -124,16 +128,12 @@ function mysql_eval() {
   global $_dbh;
 
   $all_args = func_get_args();
-  $sql = sql_format_args($all_args);
-  if($value = MysqlInvocationCache::get('mysql_eval', $sql)) {
-    return $value;
-  }
+  $sql = sql_fmt_array($all_args);
   $results = mysql_do_exec($sql);
   $data = array();
   while($row = $results->fetch_assoc()) {
     $data[] = $row;
   }
-  MysqlInvocationCache::put('mysql_eval', $sql, $data);
   return $data;
 }
 
@@ -145,40 +145,28 @@ function mysql_list() {
   global $_dbh;
 
   $all_args = func_get_args();
-  $sql = sql_format_args($all_args);
-  if($value = MysqlInvocationCache::get('mysql_list', $sql)) {
-    return $value;
-  }
+  $sql = sql_fmt_array($all_args);
   $results = mysql_do_exec($sql);
   $data = array();
   while($row = $results->fetch_assoc()) {
     $data[] = $row[0];
   }
-  MysqlInvocationCache::put('mysql_list', $sql, $data);
   return $data;
 }
 
 function mysql_get() {
   $all_args = func_get_args();
-  $sql = sql_format_args($all_args);
-  if($value = MysqlInvocationCache::get('mysql_eval_single', $sql)) {
-    return $value;
-  }
+  $sql = sql_fmt_array($all_args);
   $results = mysql_do_exec($sql);
   $data = $results->fetch_assoc();
-  MysqlInvocationCache::put('mysql_eval_single', $sql, $data);
   return $data;
 }
 
 function mysql_value() {
   $all_args = func_get_args();
-  $sql = sql_format_args($all_args);
-  if($value = MysqlInvocationCache::get('mysql_value', $sql)) {
-    return $value;
-  }
+  $sql = sql_fmt_array($all_args);
   $results = mysql_do_exec($sql);
   $data = $results->fetch_array();
-  MysqlInvocationCache::put('mysql_value', $sql, $data[0]);
   return $data ? $data[0] : false;
 }
 

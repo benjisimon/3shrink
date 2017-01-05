@@ -5,13 +5,27 @@
 body {
   background-color: #222;
   color: #AAA;
+  font-family: Arial;
 }
 
 h1 {
   text-align: center;
   font-size: 48px;
-  letter-spacing: -2px;
 }
+
+h1 a {
+  color: #DDD;
+}
+
+.footer  {
+  text-align: center;
+  font-size: 10px;
+}
+
+.footer a {
+  color: #A8DAFF;
+}
+
 
 .cols > .col {
   box-sizing: border-box;

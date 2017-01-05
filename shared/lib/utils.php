@@ -8,14 +8,14 @@ function g($array, $index, $default = false) {
 }
 
 function A() {
-  $array = get_func_args();
+  $array = func_get_args();
   return $array;
 }
 
 function snippet($_name, $_params = array()) {
   extract($_params);
   ob_start();
-  require(__DIR__ . "/../../snippets/$_name$_ext.php");
+  require(__DIR__ . "/../../snippets/$_name.php");
   $content = ob_get_clean();
   return $content;
 }
