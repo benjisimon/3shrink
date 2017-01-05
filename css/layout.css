@@ -40,6 +40,7 @@ pre {
 .cols > .col {
   box-sizing: border-box;
   float: left;
+  margin-bottom: 10px;
 }
 
 .cols > .col.w50 { width: 50% }
@@ -49,3 +50,7 @@ pre {
 .ac { text-align: center; }
 .al { text-align: left; }
 .ar { text-align: right; }
+
+@media only screen and (max-width: 500px) {
+  .cols > .col.w50 { width: 100% }
+}
