@@ -50,7 +50,7 @@ function item_domain() {
 
 function item_abbreviation() {
   $charset = ['A','B','C','D','E','F','H','J','K','L','M','N',
-              'P','Q','R','S','T','U','W','X','Y','Z',
+              'P','Q','R','T','U','W','X','Y','Z',
               2,3,4,5,7,8,9];
   
    $indexes = array_rand($charset, 3);
