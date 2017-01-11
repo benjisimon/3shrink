@@ -12,6 +12,7 @@ if(strlen($abbreviation) != 3) {
   $found = item_by_abbreviation($abbreviation);
   if($found) {
     $content = item_content($found);
+    maybe_geek_output($content);
     if(strpos($content, 'http') === 0) {
       header("Location: $content");
     } else {

@@ -24,6 +24,7 @@ pre {
   color: blue;
   padding: 20px;
   margin: auto;
+  overflow: auto;
 }
 
 .footer  {
