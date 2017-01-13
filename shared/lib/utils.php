@@ -41,4 +41,12 @@ function resource_url($path) {
   return "/$path?xcache=" . filemtime($abs);
 }
 
+function esc_attr($html) {
+  $html = htmlspecialchars($html);
+  $html = preg_replace(array('/["]/', "/[']/"),
+                       array("&#34;", "&#39;"),
+                       $html);
+  return $html;
+}
+
 ?>

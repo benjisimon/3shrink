@@ -16,7 +16,10 @@
     </div>
 
     <div class="footer">
-      <a href="/">Home</a> | <a href="http://blogbyben.com/">Built By Ben</a>
+      <a href="/">Home</a> | <a href="http://blogbyben.com/">Built By Ben</a> |
+      Bookmarklets: 
+      [<?= snippet('bookmarklet', ['label' => "URL", 'src' => 'window.location']) ?>]
+      [<?= snippet('bookmarklet', ['label' => "TXT", 'src' => "prompt('Text to Shrink')"]) ?>]
     </div>
   </body>
 </html>
