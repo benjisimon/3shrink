@@ -49,4 +49,40 @@ function esc_attr($html) {
   return $html;
 }
 
+global $_all_hooks;
+$_all_hooks = array();
+
+function register_hook($name, $fn, $seq = 10) {
+  global $_all_hooks;
+
+
+  if(!isset($_all_hooks[$name])) {
+    $_all_hooks[$name] = A();
+  }
+
+  $_all_hooks[$name][] = array('seq' => $seq, 'fn' => $fn);
+  uasort($_all_hooks[$name], create_function('$a,$b','return $a["seq"] - $b["seq"];'));
+}
+
+/*
+ * $name, $value, $arg1, $arg2, ...
+ */
+function apply_hook($name, $value) {
+  global $_all_hooks;
+
+  $args  = func_get_args();
+  $name  = array_shift($args);
+  $value = array_shift($args);
+
+  if(is_array(g($_all_hooks, $name))) {
+    foreach($_all_hooks[$name] as $h) {
+      $params = array_merge(A($value), $args);
+      $value  = call_user_func_array($h['fn'], $params);
+    }
+  }
+
+  return $value;
+}
+
+
 ?>

@@ -10,3 +10,6 @@ EOF;
 $code = esc_attr($code);
 ?>
 <a href="javascript:<?= $code ?>">3shrink <?= $label ?></a>
+
+
+

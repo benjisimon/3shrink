@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>3shrink</title>
+    <title><?= apply_hook('shell_title', $_SERVER['SERVER_NAME']) ?></title>
     <link rel="Stylesheet" href="<?= resource_url('css/layout.css')?>" type="text/css"/>
   </head>
 
