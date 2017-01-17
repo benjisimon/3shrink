@@ -4,7 +4,7 @@
  */
 $code = <<<EOF
 (function(){
-  window.location = 'http://{$_SERVER['SERVER_NAME']}/shrink?i=' + encodeURIComponent($src)
+  window.open('http://{$_SERVER['SERVER_NAME']}/shrink?i=' + encodeURIComponent($src));
 })()
 EOF;
 $code = esc_attr($code);

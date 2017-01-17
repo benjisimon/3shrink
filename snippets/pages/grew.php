@@ -4,5 +4,5 @@
  */
 ?>
 <?= start_snippet('shell'); ?>
-<pre><?= $content ?></pre>
+<textarea onclick="this.select()"><?= $content ?></textarea>
 <?= end_snippet(); ?>

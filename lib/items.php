@@ -48,6 +48,10 @@ function item_domain() {
   return $_SERVER['SERVER_NAME'];
 }
 
+function item_url($item) {
+  return 'http://' . item_domain() . '/' . $item['abbreviation'];
+}
+
 function item_abbreviation() {
   $charset = ['A','B','C','D','E','F','H','J','K','L','M','N',
               'P','Q','R','T','U','W','X','Y','Z',

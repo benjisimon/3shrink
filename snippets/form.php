@@ -4,6 +4,6 @@
  */
 ?>
 <form method="GET" action="/<?= $action ?>">
-  <input name="i" type="text"/>
+  <input class="w90" name="i" type="text"/>
   <input type="submit" value="<?= $label ?>">
 </form>
