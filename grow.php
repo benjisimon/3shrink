@@ -4,7 +4,8 @@
  */
 require_once('lib/siteconfig.php');
 
-$abbreviation = strtoupper(g($_GET, 'i'));
+$abbreviation = strtoupper(g($_GET, 'i', ''));
+$abbreviation = substr($abbreviation, -3);
 
 if(strlen($abbreviation) != 3) {
   echo snippet('pages/error', ['message' => "That doesn't look right.", 'code' => 400]);

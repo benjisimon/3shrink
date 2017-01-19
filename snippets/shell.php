@@ -19,7 +19,8 @@
       <a href="/">Home</a> | <a href="http://blogbyben.com/">Built By Ben</a> |
       Bookmarklets: 
       [<?= snippet('bookmarklet', ['label' => "URL", 'src' => 'window.location']) ?>]
-      [<?= snippet('bookmarklet', ['label' => "TXT", 'src' => "prompt('Text to Shrink')"]) ?>]
+      [<?= snippet('bookmarklet', ['label' => "TXT", 'src' => "prompt('Text to Shrink')"]) ?>] |
+      <?= snippet('protocol_handler'); ?>
     </div>
   </body>
 </html>
