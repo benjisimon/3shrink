@@ -14,7 +14,7 @@ if(strlen($abbreviation) != 3) {
   if($found) {
     $content = item_content($found);
     maybe_geek_output($content);
-    if(strpos($content, 'http') === 0) {
+    if(strpos($content, 'http') === 0 && preg_match('|^http[^\r\n ]+$|', $content)) {
       header("Location: $content");
     } else {
       echo snippet('pages/grew', ['item' => $found, 'content' => $content]);

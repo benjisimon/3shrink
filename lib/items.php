@@ -68,7 +68,7 @@ function item_content($item) {
       $content .= $item["content{$i}"];
     }
   }
-  return $content;
+  return trim($content);
 }
 
 ?>
