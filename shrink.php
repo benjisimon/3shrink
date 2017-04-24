@@ -4,7 +4,11 @@
  */
 require_once('lib/siteconfig.php');
 
-$content = g($_GET, 'i');
+if(is_upload_request()) {
+  $content = do_upload();
+} else {
+  $content = g($_GET, 'i');
+}
 
 if(!$content) {
   echo snippet('pages/error', ['message' => "Can't shrink nothing.", 'code' => 400]);
