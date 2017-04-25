@@ -1,4 +1,4 @@
 RewriteEngine On
 
-RewriteRule ^(...)$           /grow.php?i=$1 [L]
+RewriteRule ^(...)$           /grow.php?i=$1 [L,QSA]
 RewriteRule ^(shrink|grow)$   /$1.php [L]

@@ -15,8 +15,12 @@ require_once(__DIR__ . '/db.php');
 
 upload_setup();
 
+function geek_val() {
+  return g($_GET, 'geek', g($_COOKIE, 'geek'));
+}
+
 function maybe_geek_output($text) {
-  if(g($_GET, 'geek')) {
+  if(geek_val()) {
     header("Content-Type: text/plain");
     echo "$text\n";
     exit();

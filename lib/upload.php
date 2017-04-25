@@ -16,7 +16,7 @@ function upload_s3_client() {
 function is_upload_request() {
   return (g($_SERVER, 'REQUEST_METHOD') == 'POST' &&
           g($_SERVER, 'CONTENT_TYPE')   == 'application/octet-stream' && 
-          g($_GET, 'geek')              == trim(file_get_contents(__DIR__ . '/.geek.key')));
+          geek_val()                    == trim(file_get_contents(__DIR__ . '/.geek.key')));
 }
 
 function do_upload() {
