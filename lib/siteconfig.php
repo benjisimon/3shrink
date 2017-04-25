@@ -12,8 +12,7 @@ require_once(__DIR__ . '/items.php');
 require_once(__DIR__ . '/upload.php');
 require_once(__DIR__ . '/db.php');
 
-
-upload_setup();
+define('UPLOAD_BUCKET', 'files.3shrink.com');
 
 function geek_val() {
   return g($_GET, 'geek', g($_COOKIE, 'geek'));

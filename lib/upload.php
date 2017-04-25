@@ -4,10 +4,7 @@
  * 3shrinking it
  */
 
-function upload_setup() {
-  $client = upload_s3_client();
-  $client->registerStreamWrapper();
-}
+
 function upload_s3_client() {
   return new Aws\S3\S3Client([ 'version' => 'latest',
                                'region'  => 'us-east-1']);
@@ -20,17 +17,31 @@ function is_upload_request() {
 }
 
 function do_upload() {
-  $name    = md5(g($_SERVER, 'CONTENT_LENGTH', 0) . microtime(true) . rand(10000,99999) . $_SERVER['SERVER_NAME']);
-  $in_fd   = fopen("php://input", 'r');
-  $out_fd  = fopen("s3://files.3shrink.com/$name", 'w');
+  $in_fd     = fopen("php://input", 'r');
+  $buffer    = tempnam("/tmp", "upload");
+  $buffer_fd = fopen($buffer, 'w');
+
   while($data = fgets($in_fd)) {
-    fputs($out_fd, $data);
+    fputs($buffer_fd, $data);
   }
   fclose($in_fd);
-  fclose($out_fd);
+  fclose($buffer_fd);
 
-  $client = upload_s3_client();
-  return $client->getObjectUrl('files.3shrink.com', $name);
+  $info      = finfo_open();
+  $mime_type = finfo_file($info, $buffer, FILEINFO_MIME_TYPE);
+  $name      = md5_file($buffer);
+
+  $s3 = upload_s3_client();
+  if(!$s3->doesObjectExist(UPLOAD_BUCKET, $name)) {
+    $s3->putObject(['Bucket'      => UPLOAD_BUCKET,
+                    'Key'         => $name,
+                    'SourceFile'  => $buffer,
+                    'ContentType' => $mime_type]);
+                    
+  }
+  return $s3->getObjectUrl(UPLOAD_BUCKET, $name);
+
+
 }
 
 
