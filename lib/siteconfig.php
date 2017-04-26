@@ -10,7 +10,7 @@ require_once(__DIR__ . '/../shared/lib/mysql.php');
 require_once(__DIR__ . '/../shared/vendor/autoload.php');
 require_once(__DIR__ . '/items.php');
 require_once(__DIR__ . '/upload.php');
-require_once(__DIR__ . '/db.php');
+require_once(__DIR__ . '/private.php');
 
 define('UPLOAD_BUCKET', 'files.3shrink.com');
 
