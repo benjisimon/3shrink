@@ -8,6 +8,7 @@
   <head>
     <title><?= apply_hook('shell_title', $_SERVER['SERVER_NAME']) ?></title>
     <link rel="Stylesheet" href="<?= resource_url('css/layout.css')?>" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>

@@ -2,44 +2,40 @@
  * A CSS file for making our site look pretty
  */
 
+html {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
   background-color: #222;
   color: #AAA;
   font-family: Arial;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
 }
+
 
 .page {
-  text-align: center;
-  margin: 0px 10px;
+  flex: 1;
+  padding: 1em;
 }
 
-h1, p, input, textarea {
-  font-size: 48px;
-  text-align: center;
-  display: block;
-  margin: 10px auto;
-  max-width: 100%;
+input, textarea {
+  padding: .5em;
 }
 
 h1 a {
   color: #DDD;
 }
 
-pre, textarea {
-  max-width: 800px;
-  width: 100%;
-  height: 200px;
-  border: 1px solid black;
-  background-color: white;
-  color: blue;
-  margin: auto;
-  overflow: auto;
-}
-
 .footer  {
-  margin-top: 40px;
   text-align: center;
-  font-size: 10px;
+  padding: 1em 0;
 }
 
 .footer a {
@@ -47,21 +43,29 @@ pre, textarea {
 }
 
 
-.cols > .col {
-  box-sizing: border-box;
-  float: left;
-  margin-bottom: 10px;
+form {
+  display: flex;
+  margin: 2em auto;
+  max-width: 400px;
 }
 
-.w50 { width: 50% }
-.w90 { width: 90% }
+.output {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+}
 
-.clear { clear: both }
+.output input {
+  display: block;
+  margin: 1em;
+}
 
 .ac { text-align: center; }
 .al { text-align: left; }
 .ar { text-align: right; }
+.flex { flex: 1 }
 
 @media only screen and (max-width: 500px) {
-  .cols > .col.w50 { width: 100% }
 }

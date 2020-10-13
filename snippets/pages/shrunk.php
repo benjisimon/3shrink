@@ -8,13 +8,10 @@ register_hook('shell_title', function($title) use($item) {
 maybe_geek_output($item['abbreviation']);
 ?>
 <? start_snippet('shell') ?>
-<p>
-  <input onclick="this.select()" type="text" value="<?= $item['abbreviation'] ?>"/>
-</p>
-
-<p>
-  <input onclick="this.select()" type="text" value="<?= item_url($item) ?>"/>
-</p>
+<div class="output">
+  <input class="w100" onclick="this.select()" type="text" value="<?= $item['abbreviation'] ?>"/>
+  <input class="w100" onclick="this.select()" type="text" value="<?= item_url($item) ?>"/>
+</div>
 
 
 <?= end_snippet(); ?>

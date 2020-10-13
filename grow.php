@@ -17,7 +17,8 @@ if(strlen($abbreviation) != 3) {
     if(strpos($content, 'http') === 0 && preg_match('|^http[^\r\n ]+$|', $content)) {
       header("Location: $content");
     } else {
-      echo snippet('pages/grew', ['item' => $found, 'content' => $content]);
+      header("Content-Type: text/plain");
+      echo $content;
     }
   } else {
     echo snippet('pages/error', ['message' => "Sorry, {$abbreviation} wasn't found", 'code' => 404]);
